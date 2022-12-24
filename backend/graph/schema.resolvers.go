@@ -56,7 +56,6 @@ func (r *queryResolver) GetAllBooks(ctx context.Context) ([]*model.Book, error) 
 }
 
 // GetOneBook is the resolver for the GetOneBook field.
-
 func (r *queryResolver) GetOneBook(ctx context.Context, id int) (*model.Book, error) {
 	book, err := r.BookRepository.GetOneBook(id)
 	selectedBook := &model.Book{

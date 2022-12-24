@@ -11,7 +11,6 @@ import (
 	"github.com/khishh/personal-finance-app/app/database"
 	"github.com/khishh/personal-finance-app/app/repository"
 	"github.com/khishh/personal-finance-app/graph"
-	"github.com/khishh/personal-finance-app/graph/generated"
 )
 
 const defaultPort = "8080"
@@ -36,7 +35,7 @@ func main() {
 		port = defaultPort
 	}
 	repo := repository.NewBookService(db)
-	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{
+	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
 		BookRepository: repo,
 	}}))
 
