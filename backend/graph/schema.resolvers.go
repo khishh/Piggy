@@ -46,6 +46,25 @@ func (r *mutationResolver) UpdateBook(ctx context.Context, id int, input model.B
 	return successMessage, nil
 }
 
+// CreateUser is the resolver for the CreateUser field.
+func (r *mutationResolver) CreateUser(ctx context.Context, input model.UserInput) (*model.User, error) {
+	// panic(fmt.Errorf("not implemented: CreateUser - CreateUser"))
+	user, err := r.UserRepository.CreateUser(&input)
+	createdUser := &model.User{
+		ID:        user.ID,
+		FirstName: user.FirstName,
+		LastName:  user.LastName,
+		Picture:   &user.Picture,
+		Email:     user.Email,
+		Sub:       user.Sub,
+	}
+
+	if err != nil {
+		return nil, err
+	}
+	return createdUser, nil
+}
+
 // GetAllBooks is the resolver for the GetAllBooks field.
 func (r *queryResolver) GetAllBooks(ctx context.Context) ([]*model.Book, error) {
 	books, err := r.BookRepository.GetAllBooks()
@@ -68,6 +87,25 @@ func (r *queryResolver) GetOneBook(ctx context.Context, id int) (*model.Book, er
 		return nil, err
 	}
 	return selectedBook, nil
+}
+
+// GetOneUser is the resolver for the GetOneUser field.
+func (r *queryResolver) GetOneUser(ctx context.Context, id string) (*model.User, error) {
+	// panic(fmt.Errorf("not implemented: GetOneUser - GetOneUser"))
+	user, err := r.UserRepository.GetOneUser(id)
+	selectedUser := &model.User{
+		ID:        user.ID,
+		FirstName: user.FirstName,
+		LastName:  user.LastName,
+		Picture:   &user.Picture,
+		Email:     user.Email,
+		Sub:       user.Sub,
+	}
+
+	if err != nil {
+		return nil, err
+	}
+	return selectedUser, nil
 }
 
 // Mutation returns MutationResolver implementation.

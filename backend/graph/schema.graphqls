@@ -14,13 +14,35 @@ input BookInput{
   author: String!
   publisher: String!
 }
+
+type User {
+  id: Int!
+  email: String!
+  last_name: String!
+  first_name: String!
+  picture: String
+  sub: String!
+}
+
+input UserInput {
+  email: String!
+  last_name: String!
+  first_name: String!
+  picture: String
+  sub: String!
+}
+
 type Mutation{
   CreateBook(input: BookInput!): Book!
   DeleteBook(id: Int!): String!
   UpdateBook(id: Int!, input: BookInput!): String!
 
+  CreateUser(input: UserInput!): User!
 }
+
 type Query{
   GetAllBooks: [Book!]!
   GetOneBook(id: Int!): Book! 
+
+  GetOneUser(id: String!): User!
 }

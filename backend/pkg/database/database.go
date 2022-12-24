@@ -3,6 +3,7 @@ package database
 import (
 	"fmt"
 
+	"github.com/khishh/personal-finance-app/graph/model"
 	"github.com/khishh/personal-finance-app/pkg/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -29,6 +30,7 @@ func NewConnection(config *Config) (*gorm.DB, error) {
 	return db, nil
 }
 
-func Migrate(db *gorm.DB) error {
-	return db.AutoMigrate(&models.Book{})
+func Migrate(db *gorm.DB) {
+	db.AutoMigrate(&models.Book{})
+	db.AutoMigrate(&model.User{})
 }

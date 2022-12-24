@@ -8,4 +8,5 @@ import "github.com/khishh/personal-finance-app/pkg/repository"
 
 type Resolver struct {
 	BookRepository repository.BookRepository
+	UserRepository repository.UserRepository
 }

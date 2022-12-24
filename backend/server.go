@@ -34,9 +34,10 @@ func main() {
 	if port == "" {
 		port = defaultPort
 	}
-	repo := repository.NewBookService(db)
+
 	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
-		BookRepository: repo,
+		BookRepository: repository.NewBookService(db),
+		UserRepository: repository.NewUserService(db),
 	}}))
 
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
