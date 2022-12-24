@@ -1,6 +1,6 @@
 package graph
 
-import "github.com/khishh/personal-finance-app/app/repository"
+import "github.com/khishh/personal-finance-app/pkg/repository"
 
 // This file will not be regenerated automatically.
 //

@@ -8,9 +8,9 @@ import (
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/joho/godotenv"
-	"github.com/khishh/personal-finance-app/app/database"
-	"github.com/khishh/personal-finance-app/app/repository"
 	"github.com/khishh/personal-finance-app/graph"
+	"github.com/khishh/personal-finance-app/pkg/database"
+	"github.com/khishh/personal-finance-app/pkg/repository"
 )
 
 const defaultPort = "8080"

@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"github.com/khishh/personal-finance-app/app/models"
 	"github.com/khishh/personal-finance-app/graph/model"
+	"github.com/khishh/personal-finance-app/pkg/models"
 	"gorm.io/gorm"
 )
 

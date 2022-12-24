@@ -3,7 +3,7 @@ package database
 import (
 	"fmt"
 
-	"github.com/khishh/personal-finance-app/app/models"
+	"github.com/khishh/personal-finance-app/pkg/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
