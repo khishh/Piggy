@@ -25,6 +25,7 @@ func main() {
 		SSLMode:  os.Getenv("DB_SSLMODE"),
 		DBName:   os.Getenv("DB_NAME"),
 	}
+	log.Printf("%s %s\n", os.Getenv("DB_HOST"), os.Getenv("DB_PORT"))
 	db, err := database.NewConnection(config)
 	if err != nil {
 		panic(err)
