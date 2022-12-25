@@ -20,9 +20,9 @@ services:
     image: postgres:15-alpine
     restart: always
     environment:
-      POSTGRES_USER: personal_finance_su
-      POSTGRES_PASSWORD: password123!
-      POSTGRES_DB: personal_finance_app
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
         - 5432:5432
     volumes:
