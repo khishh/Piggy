@@ -6,6 +6,10 @@ services:
       dockerfile: ./my-app/Dockerfile
     ports:
       - "3000:3000"
+    volumes:
+      - ./my-app/src:/app/src
+    links:
+      - "server:server"
 
   server:
     build:
@@ -27,6 +31,22 @@ services:
         - 5432:5432
     volumes:
       - dbdata:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates
+    depends_on:
+      - web
+      - server
+    environment:
+      FRONTEND_COMPOSE_SERVICE_NAME: ${FRONTEND_COMPOSE_SERVICE_NAME}
+      FRONTEND_PORT: ${FRONTEND_PORT}
+      BACKEND_COMPOSE_SERVICE_NAME: ${BACKEND_COMPOSE_SERVICE_NAME}
+      BACKEND_PORT: ${BACKEND_PORT}
+    
 
 volumes:
   dbdata:

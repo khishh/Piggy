@@ -1,0 +1,13 @@
+server {
+
+    server_name personal-finance.kodai.app;
+    listen 80;
+
+    location / {
+        proxy_pass http://${FRONTEND_COMPOSE_SERVICE_NAME}:${FRONTEND_PORT};
+    }
+
+    location /api {
+        proxy_pass http://${BACKEND_COMPOSE_SERVICE_NAME}:${BACKEND_PORT};
+    }
+}

@@ -41,8 +41,8 @@ func main() {
 		UserRepository: repository.NewUserService(db),
 	}}))
 
-	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
-	http.Handle("/query", srv)
+	http.Handle("/graphiql", playground.Handler("GraphQL playground", "/api"))
+	http.Handle("/api", srv)
 
 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
