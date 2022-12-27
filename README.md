@@ -1,6 +1,6 @@
 [WIP]Personal finance app using Plaid Api
 
-# Goals in this project
+# Learning goals in this project
 
 - Get familiar with GoLang through building REST APIs
 - Build GraphQL supported backend server from the scratch
