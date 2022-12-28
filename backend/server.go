@@ -7,10 +7,12 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/go-chi/chi"
 	"github.com/joho/godotenv"
 	"github.com/khishh/personal-finance-app/graph"
 	"github.com/khishh/personal-finance-app/pkg/database"
 	"github.com/khishh/personal-finance-app/pkg/repository"
+	"github.com/rs/cors"
 )
 
 const defaultPort = "8080"
@@ -36,14 +38,31 @@ func main() {
 		port = defaultPort
 	}
 
+	router := chi.NewRouter()
+
+	// Add CORS middleware around every request
+	// See https://github.com/rs/cors for full option listing
+	router.Use(cors.New(cors.Options{
+		AllowedOrigins:   []string{"http://localhost:3000"},
+		AllowCredentials: true,
+		Debug:            true,
+	}).Handler)
+
 	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
 		BookRepository: repository.NewBookService(db),
 		UserRepository: repository.NewUserService(db),
 	}}))
 
-	http.Handle("/graphiql", playground.Handler("GraphQL playground", "/api"))
-	http.Handle("/api", srv)
+	// mux := http.NewServeMux()
+	// mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	// 	w.Header().Set("Content-Type", "application/json")
+	// })
+
+	// handler := cors.Default().Handler(mux)
+
+	router.Handle("/graphiql", playground.Handler("GraphQL playground", "/api"))
+	router.Handle("/api", srv)
 
 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
