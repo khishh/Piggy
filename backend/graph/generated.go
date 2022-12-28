@@ -53,10 +53,10 @@ type ComplexityRoot struct {
 	}
 
 	Mutation struct {
-		CreateBook func(childComplexity int, input model.BookInput) int
-		CreateUser func(childComplexity int, input model.UserInput) int
-		DeleteBook func(childComplexity int, id int) int
-		UpdateBook func(childComplexity int, id int, input model.BookInput) int
+		CreateBook         func(childComplexity int, input model.BookInput) int
+		CreateUserOnSignIn func(childComplexity int, input model.UserInput) int
+		DeleteBook         func(childComplexity int, id int) int
+		UpdateBook         func(childComplexity int, id int, input model.BookInput) int
 	}
 
 	Query struct {
@@ -79,7 +79,7 @@ type MutationResolver interface {
 	CreateBook(ctx context.Context, input model.BookInput) (*model.Book, error)
 	DeleteBook(ctx context.Context, id int) (string, error)
 	UpdateBook(ctx context.Context, id int, input model.BookInput) (string, error)
-	CreateUser(ctx context.Context, input model.UserInput) (*model.User, error)
+	CreateUserOnSignIn(ctx context.Context, input model.UserInput) (*model.User, error)
 }
 type QueryResolver interface {
 	GetAllBooks(ctx context.Context) ([]*model.Book, error)
@@ -142,17 +142,17 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Mutation.CreateBook(childComplexity, args["input"].(model.BookInput)), true
 
-	case "Mutation.CreateUser":
-		if e.complexity.Mutation.CreateUser == nil {
+	case "Mutation.CreateUserOnSignIn":
+		if e.complexity.Mutation.CreateUserOnSignIn == nil {
 			break
 		}
 
-		args, err := ec.field_Mutation_CreateUser_args(context.TODO(), rawArgs)
+		args, err := ec.field_Mutation_CreateUserOnSignIn_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
-		return e.complexity.Mutation.CreateUser(childComplexity, args["input"].(model.UserInput)), true
+		return e.complexity.Mutation.CreateUserOnSignIn(childComplexity, args["input"].(model.UserInput)), true
 
 	case "Mutation.DeleteBook":
 		if e.complexity.Mutation.DeleteBook == nil {
@@ -355,7 +355,7 @@ func (ec *executionContext) field_Mutation_CreateBook_args(ctx context.Context, 
 	return args, nil
 }
 
-func (ec *executionContext) field_Mutation_CreateUser_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Mutation_CreateUserOnSignIn_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 model.UserInput
@@ -843,8 +843,8 @@ func (ec *executionContext) fieldContext_Mutation_UpdateBook(ctx context.Context
 	return fc, nil
 }
 
-func (ec *executionContext) _Mutation_CreateUser(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Mutation_CreateUser(ctx, field)
+func (ec *executionContext) _Mutation_CreateUserOnSignIn(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Mutation_CreateUserOnSignIn(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -857,7 +857,7 @@ func (ec *executionContext) _Mutation_CreateUser(ctx context.Context, field grap
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Mutation().CreateUser(rctx, fc.Args["input"].(model.UserInput))
+		return ec.resolvers.Mutation().CreateUserOnSignIn(rctx, fc.Args["input"].(model.UserInput))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -874,7 +874,7 @@ func (ec *executionContext) _Mutation_CreateUser(ctx context.Context, field grap
 	return ec.marshalNUser2ᚖgithubᚗcomᚋkhishhᚋpersonalᚑfinanceᚑappᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Mutation_CreateUser(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Mutation_CreateUserOnSignIn(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Mutation",
 		Field:      field,
@@ -905,7 +905,7 @@ func (ec *executionContext) fieldContext_Mutation_CreateUser(ctx context.Context
 		}
 	}()
 	ctx = graphql.WithFieldContext(ctx, fc)
-	if fc.Args, err = ec.field_Mutation_CreateUser_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
+	if fc.Args, err = ec.field_Mutation_CreateUserOnSignIn_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
 		ec.Error(ctx, err)
 		return
 	}
@@ -3470,10 +3470,10 @@ func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "CreateUser":
+		case "CreateUserOnSignIn":
 
 			out.Values[i] = ec.OperationContext.RootResolverMiddleware(innerCtx, func(ctx context.Context) (res graphql.Marshaler) {
-				return ec._Mutation_CreateUser(ctx, field)
+				return ec._Mutation_CreateUserOnSignIn(ctx, field)
 			})
 
 			if out.Values[i] == graphql.Null {

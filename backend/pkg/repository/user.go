@@ -7,7 +7,7 @@ import (
 )
 
 type UserRepository interface {
-	CreateUser(userInput *model.UserInput) (*models.User, error)
+	CreateUserOnSignIn(userInput *model.UserInput) (*models.User, error)
 
 	GetOneUser(sub string) (*models.User, error)
 }
@@ -26,15 +26,24 @@ func NewUserService(db *gorm.DB) *UserService {
 
 // have to add a pre-create hook to make sure that sub does not exist in the db
 
-func (u *UserService) CreateUser(userInput *model.UserInput) (*models.User, error) {
-	user := &models.User{
+func (u *UserService) CreateUserOnSignIn(userInput *model.UserInput) (*models.User, error) {
+
+	// check if user exist. If so return the existing user
+	user, err := u.GetOneUser(userInput.Sub)
+
+	if err == nil {
+		return user, err
+	}
+
+	// create a new user
+	user = &models.User{
 		Email:     userInput.Email,
 		LastName:  userInput.LastName,
 		FirstName: userInput.FirstName,
 		Picture:   *userInput.Picture,
 		Sub:       userInput.Sub,
 	}
-	err := u.Db.Create(user).Error
+	err = u.Db.Create(user).Error
 	return user, err
 }
 

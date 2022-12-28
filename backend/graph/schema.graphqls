@@ -37,7 +37,7 @@ type Mutation{
   DeleteBook(id: Int!): String!
   UpdateBook(id: Int!, input: BookInput!): String!
 
-  CreateUser(input: UserInput!): User!
+  CreateUserOnSignIn(input: UserInput!): User!
 }
 
 type Query{

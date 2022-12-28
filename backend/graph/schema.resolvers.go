@@ -46,11 +46,14 @@ func (r *mutationResolver) UpdateBook(ctx context.Context, id int, input model.B
 	return successMessage, nil
 }
 
-// CreateUser is the resolver for the CreateUser field.
-func (r *mutationResolver) CreateUser(ctx context.Context, input model.UserInput) (*model.User, error) {
-	// panic(fmt.Errorf("not implemented: CreateUser - CreateUser"))
-	user, err := r.UserRepository.CreateUser(&input)
-	createdUser := &model.User{
+// CreateUserOnSignIn is the resolver for the CreateUserOnSignIn field.
+func (r *mutationResolver) CreateUserOnSignIn(ctx context.Context, input model.UserInput) (*model.User, error) {
+	user, err := r.UserRepository.CreateUserOnSignIn(&input)
+	if err != nil {
+		return nil, err
+	}
+
+	selectedUser := &model.User{
 		ID:        user.ID,
 		FirstName: user.FirstName,
 		LastName:  user.LastName,
@@ -58,11 +61,7 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.UserInput
 		Email:     user.Email,
 		Sub:       user.Sub,
 	}
-
-	if err != nil {
-		return nil, err
-	}
-	return createdUser, nil
+	return selectedUser, nil
 }
 
 // GetAllBooks is the resolver for the GetAllBooks field.
@@ -77,15 +76,18 @@ func (r *queryResolver) GetAllBooks(ctx context.Context) ([]*model.Book, error) 
 // GetOneBook is the resolver for the GetOneBook field.
 func (r *queryResolver) GetOneBook(ctx context.Context, id int) (*model.Book, error) {
 	book, err := r.BookRepository.GetOneBook(id)
+
+	if err != nil {
+		return nil, err
+	}
+
 	selectedBook := &model.Book{
 		ID:        book.ID,
 		Author:    book.Author,
 		Publisher: book.Publisher,
 		Title:     book.Title,
 	}
-	if err != nil {
-		return nil, err
-	}
+
 	return selectedBook, nil
 }
 
@@ -93,6 +95,11 @@ func (r *queryResolver) GetOneBook(ctx context.Context, id int) (*model.Book, er
 func (r *queryResolver) GetOneUser(ctx context.Context, id string) (*model.User, error) {
 	// panic(fmt.Errorf("not implemented: GetOneUser - GetOneUser"))
 	user, err := r.UserRepository.GetOneUser(id)
+
+	if err != nil {
+		return nil, err
+	}
+
 	selectedUser := &model.User{
 		ID:        user.ID,
 		FirstName: user.FirstName,
@@ -102,9 +109,6 @@ func (r *queryResolver) GetOneUser(ctx context.Context, id string) (*model.User,
 		Sub:       user.Sub,
 	}
 
-	if err != nil {
-		return nil, err
-	}
 	return selectedUser, nil
 }
 

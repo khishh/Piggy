@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client';
 import { useAuth0 } from '@auth0/auth0-react'
 import React from 'react'
-import { GET_ALL_BOOKS } from '../graphql/query/GetAllBooks';
 import { Book } from '../graphql/model/Book';
+import { GET_ALL_BOOKS } from '../graphql/query/Books';
 
 const TestProfile = () => {
 
