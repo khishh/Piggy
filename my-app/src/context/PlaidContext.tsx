@@ -3,6 +3,7 @@ import React, { Dispatch, ReactNode, createContext, useReducer } from "react";
 interface PlaidState {
     linkToken: string | null,
     accessToken: string | null,
+    itemId: string
 };
 
 type PlaidAction = {
@@ -13,6 +14,7 @@ type PlaidAction = {
 const initialPlaidState: PlaidState = {
     linkToken: "",
     accessToken: "",
+    itemId: ""
 };
 
 interface PlaidContext extends PlaidState {

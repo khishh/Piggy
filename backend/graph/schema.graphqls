@@ -22,6 +22,7 @@ type User {
   first_name: String!
   picture: String
   sub: String!
+  access_token: String
 }
 
 input UserInput {
@@ -30,6 +31,7 @@ input UserInput {
   first_name: String!
   picture: String
   sub: String!
+  access_token: String
 }
 
 type Mutation{
@@ -38,6 +40,7 @@ type Mutation{
   UpdateBook(id: Int!, input: BookInput!): String!
 
   CreateUserOnSignIn(input: UserInput!): User!
+  UpdateUserWithAccessToken(id: String!, access_token: String!): User!
 }
 
 type Query{

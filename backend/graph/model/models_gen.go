@@ -16,18 +16,20 @@ type BookInput struct {
 }
 
 type User struct {
-	ID        int     `json:"id"`
-	Email     string  `json:"email"`
-	LastName  string  `json:"last_name"`
-	FirstName string  `json:"first_name"`
-	Picture   *string `json:"picture"`
-	Sub       string  `json:"sub"`
+	ID          int     `json:"id"`
+	Email       string  `json:"email"`
+	LastName    string  `json:"last_name"`
+	FirstName   string  `json:"first_name"`
+	Picture     *string `json:"picture"`
+	Sub         string  `json:"sub"`
+	AccessToken *string `json:"access_token"`
 }
 
 type UserInput struct {
-	Email     string  `json:"email"`
-	LastName  string  `json:"last_name"`
-	FirstName string  `json:"first_name"`
-	Picture   *string `json:"picture"`
-	Sub       string  `json:"sub"`
+	Email       string  `json:"email"`
+	LastName    string  `json:"last_name"`
+	FirstName   string  `json:"first_name"`
+	Picture     *string `json:"picture"`
+	Sub         string  `json:"sub"`
+	AccessToken *string `json:"access_token"`
 }

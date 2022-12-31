@@ -64,6 +64,25 @@ func (r *mutationResolver) CreateUserOnSignIn(ctx context.Context, input model.U
 	return selectedUser, nil
 }
 
+// UpdateUserWithAccessToken is the resolver for the UpdateUserWithAccessToken field.
+func (r *mutationResolver) UpdateUserWithAccessToken(ctx context.Context, id string, accessToken string) (*model.User, error) {
+	user, err := r.UserRepository.UpdateUserWithAccessToken(id, accessToken)
+	if err != nil {
+		return nil, err
+	}
+
+	updatedUser := &model.User{
+		ID:          user.ID,
+		FirstName:   user.FirstName,
+		LastName:    user.LastName,
+		Picture:     &user.Picture,
+		Email:       user.Email,
+		Sub:         user.Sub,
+		AccessToken: &user.AccessToken,
+	}
+	return updatedUser, nil
+}
+
 // GetAllBooks is the resolver for the GetAllBooks field.
 func (r *queryResolver) GetAllBooks(ctx context.Context) ([]*model.Book, error) {
 	books, err := r.BookRepository.GetAllBooks()
@@ -101,12 +120,13 @@ func (r *queryResolver) GetOneUser(ctx context.Context, id string) (*model.User,
 	}
 
 	selectedUser := &model.User{
-		ID:        user.ID,
-		FirstName: user.FirstName,
-		LastName:  user.LastName,
-		Picture:   &user.Picture,
-		Email:     user.Email,
-		Sub:       user.Sub,
+		ID:          user.ID,
+		FirstName:   user.FirstName,
+		LastName:    user.LastName,
+		Picture:     &user.Picture,
+		Email:       user.Email,
+		Sub:         user.Sub,
+		AccessToken: &user.AccessToken,
 	}
 
 	return selectedUser, nil

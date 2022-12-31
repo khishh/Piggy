@@ -8,6 +8,7 @@ import (
 
 type UserRepository interface {
 	CreateUserOnSignIn(userInput *model.UserInput) (*models.User, error)
+	UpdateUserWithAccessToken(sub string, accessToken string) (*models.User, error)
 
 	GetOneUser(sub string) (*models.User, error)
 }
@@ -51,4 +52,14 @@ func (u *UserService) GetOneUser(sub string) (*models.User, error) {
 	user := &models.User{}
 	err := u.Db.Where("sub = ? ", sub).First(user).Error
 	return user, err
+}
+
+func (u *UserService) UpdateUserWithAccessToken(sub string, accessToken string) (*models.User, error) {
+	user, err := u.GetOneUser(sub)
+	if err != nil {
+		return nil, err
+	}
+
+	u.Db.Model(user).Update("access_token", accessToken)
+	return user, nil
 }

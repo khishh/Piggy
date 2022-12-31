@@ -7,7 +7,7 @@ import Link from './Link';
 const TestPlaid = () => {
 
     const { user, isAuthenticated } = useAuth0();
-    const { linkToken, dispatch } = useContext(plaidContext)
+    const { linkToken, accessToken, dispatch } = useContext(plaidContext)
 
     // console.log("TestPlaid Component render " + linkToken);
 
@@ -45,9 +45,16 @@ const TestPlaid = () => {
         if (linkToken) {
             console.log(`Link Token has been updated! ${linkToken}`);
         }
+    }, [linkToken]);
 
-
-    }, [linkToken])
+    useEffect(() => {
+        if (accessToken) {
+            console.log(`Access Token has been updated! ${accessToken}`);
+            // save accessToken to database
+            
+        }
+    }, [accessToken])
+    
 
     return (
         <>
