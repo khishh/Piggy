@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
@@ -8,6 +7,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useMutation } from '@apollo/client';
 import { User } from './graphql/model/User';
 import { CREATE_USER_ON_SIGN_IN } from './graphql/mutation/User';
+import TestPlaid from './components/TestPlaid';
+import Link from './components/Link';
 
 function App() {
 
@@ -36,23 +37,11 @@ function App() {
 
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
       <LoginButton />
       <LogoutButton />
-      <TestProfile />
+      {isAuthenticated && <TestProfile />}
+      {isAuthenticated && <TestPlaid />}
+      {isAuthenticated && <Link/> }
     </div>
   );
 }
