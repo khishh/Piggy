@@ -5,7 +5,8 @@ export type User = {
     last_name: string,
     picture: string,
     email: string,
-    sub: string
+    sub: string,
+    access_token: string
 }
 
 export type UserInput = {

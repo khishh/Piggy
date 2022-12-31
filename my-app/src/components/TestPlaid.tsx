@@ -3,11 +3,18 @@ import { useAuth0 } from '@auth0/auth0-react'
 import React, { useContext, useEffect } from 'react'
 import plaidContext from '../context/PlaidContext';
 import Link from './Link';
+import { useMutation } from '@apollo/client';
+import { UPDATE_USER_WITH_ACCESS_TOKEN } from '../graphql/mutation/User';
+import { User } from '../graphql/model/User';
 
 const TestPlaid = () => {
 
     const { user, isAuthenticated } = useAuth0();
     const { linkToken, accessToken, dispatch } = useContext(plaidContext)
+
+    const [ updateUserWithAccessToken, { loading, error, data} ] = useMutation<{
+        UPDATE_USER_WITH_ACCESS_TOKEN: User
+    }>(UPDATE_USER_WITH_ACCESS_TOKEN);
 
     // console.log("TestPlaid Component render " + linkToken);
 
@@ -51,9 +58,26 @@ const TestPlaid = () => {
         if (accessToken) {
             console.log(`Access Token has been updated! ${accessToken}`);
             // save accessToken to database
-            
+            const updateUserAccessToken = async () => {
+                console.log("==== updateUserAccessToken called ====");
+                console.log(user?.sub);
+                console.log(accessToken);
+                
+                const response = await updateUserWithAccessToken(
+                    {
+                        variables: {
+                            auth0_sub_id: user!.sub,
+                            plaid_access_token: accessToken
+                        }
+                    }
+                );
+                if(!error && data) {
+                    console.log(response.data);
+                }
+            }
+            updateUserAccessToken();
         }
-    }, [accessToken])
+    }, [user, accessToken])
     
 
     return (
