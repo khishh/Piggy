@@ -9,7 +9,8 @@ export const GET_ONE_USER = gql`
             last_name,
             picture,
             email,
-            sub
+            sub,
+            access_token
         }
     }
 `

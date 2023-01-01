@@ -8,7 +8,8 @@ export const CREATE_USER_ON_SIGN_IN = gql`
             last_name,
             picture,
             email,
-            sub
+            sub,
+            access_token
         }
     }
 `

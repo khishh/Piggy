@@ -54,12 +54,13 @@ func (r *mutationResolver) CreateUserOnSignIn(ctx context.Context, input model.U
 	}
 
 	selectedUser := &model.User{
-		ID:        user.ID,
-		FirstName: user.FirstName,
-		LastName:  user.LastName,
-		Picture:   &user.Picture,
-		Email:     user.Email,
-		Sub:       user.Sub,
+		ID:          user.ID,
+		FirstName:   user.FirstName,
+		LastName:    user.LastName,
+		Picture:     &user.Picture,
+		Email:       user.Email,
+		Sub:         user.Sub,
+		AccessToken: &user.AccessToken,
 	}
 	return selectedUser, nil
 }
