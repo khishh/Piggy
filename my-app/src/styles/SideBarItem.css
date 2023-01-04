@@ -1,0 +1,11 @@
+.sidebaritem {
+    padding: 10px;
+}
+
+.sidebaritem-selected {
+    background-color: #6064EF;
+}
+
+.sidebaritem:hover {
+    background-color: #6064EF;
+}

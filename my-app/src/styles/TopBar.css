@@ -1,0 +1,15 @@
+.topbar {
+    margin: 10px;
+    min-height: 40px;
+    max-height: 40px;
+    display: flex;
+    flex-direction: row;
+}
+
+.topbar-login-btn {
+    margin-left: auto;
+}
+
+.topbar-logout-btn {
+    margin-left: auto;
+}

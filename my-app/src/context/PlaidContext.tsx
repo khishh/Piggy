@@ -1,8 +1,8 @@
 import React, { Dispatch, ReactNode, createContext, useReducer } from "react";
 
 interface PlaidState {
-    linkToken: string | null,
-    accessToken: string | null,
+    linkToken: string,
+    accessToken: string,
     itemId: string
 };
 

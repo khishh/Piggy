@@ -22,6 +22,12 @@ const Link = () => {
 
     const { linkToken, dispatch } = useContext(plaidContext);
 
+    useEffect(() => {
+        if (linkToken) {
+            console.log(`Link Token has been updated! ${linkToken}`);
+        }
+    }, [linkToken]);
+
     const onSuccess = useCallback((public_token: string, metadata: PlaidLinkOnSuccessMetadata) => {
         console.log(public_token);
 

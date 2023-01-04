@@ -30,7 +30,7 @@ services:
     ports:
         - 5432:5432
     volumes:
-      - ./:/var/lib/postgresql/data
+      - dbdata:/var/lib/postgresql/data
 
   nginx:
     image: nginx

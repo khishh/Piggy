@@ -16,46 +16,42 @@ const TestPlaid = () => {
         UPDATE_USER_WITH_ACCESS_TOKEN: User
     }>(UPDATE_USER_WITH_ACCESS_TOKEN);
 
-    // console.log("TestPlaid Component render " + linkToken);
+    // const postData = {
+    //     SubId: user?.sub
+    // }
 
-    const postData = {
-        SubId: user?.sub
-    }
+    // // useeffect hook to request link token from the backend
+    // useEffect(() => {
+    //     console.log(`===== ${accessToken} ====`);
+        
+    //     if (isAuthenticated && accessToken === "") {
+    //         const response = fetch("http://localhost:80/api/create_link_token", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             },
+    //             body: JSON.stringify(postData)
+    //         }).then(response => {
+    //             if (!response.ok) {
+    //                 return;
+    //             }
+    //             return response.json();
+    //         }).then(json => {
+    //             console.log(json);
+    //             dispatch({
+    //                 type: "SET_STATE",
+    //                 state: {
+    //                     linkToken: json.link_token
+    //                 }
+    //             });
+    //         })
+    //     }
+    // }, [isAuthenticated])
 
-    // useeffect hook to request link token from the backend
-    useEffect(() => {
-        if (isAuthenticated) {
-            const response = fetch("http://localhost:80/api/create_link_token", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(postData)
-            }).then(response => {
-                if (!response.ok) {
-                    return;
-                }
-                return response.json();
-            }).then(json => {
-                console.log(json);
-                dispatch({
-                    type: "SET_STATE",
-                    state: {
-                        linkToken: json.link_token
-                    }
-                });
-            })
-        }
-    }, [isAuthenticated])
 
-    useEffect(() => {
-        if (linkToken) {
-            console.log(`Link Token has been updated! ${linkToken}`);
-        }
-    }, [linkToken]);
 
     useEffect(() => {
-        if (accessToken) {
+        if (accessToken !== "") {
             console.log(`Access Token has been updated! ${accessToken}`);
             // save accessToken to database
             const updateUserAccessToken = async () => {
@@ -84,6 +80,7 @@ const TestPlaid = () => {
         <>
             <div>TestPlaid</div>
             <p>{linkToken}</p>
+            <p>{accessToken}</p>
         </>
     )
 }

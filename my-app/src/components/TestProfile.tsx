@@ -25,6 +25,7 @@ const TestProfile = () => {
 
     return (
         <>
+            <h1>This screen should be only visible only if user is signed in.</h1>
 
             {user && (
                 <div>
