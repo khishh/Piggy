@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/TopBar.css'
 import { useAuth0 } from '@auth0/auth0-react'
-import Login from './LoginButton';
+import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 
 const TopBar = () => {
@@ -10,7 +10,7 @@ const TopBar = () => {
 
     return (
         <div className='topbar'>
-            
+
             {
                 isAuthenticated &&
                 <div className='topbar-logout-btn'>
@@ -21,7 +21,7 @@ const TopBar = () => {
             {
                 !isAuthenticated &&
                 <div className='topbar-login-btn'>
-                    <Login />
+                    <LoginButton />
                 </div>
             }
 

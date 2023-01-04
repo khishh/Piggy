@@ -1,31 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './App.css';
-import LoginButton from './components/LoginButton';
-import LogoutButton from './components/LogoutButton';
-import TestProfile from './components/TestProfile';
+
 import { useAuth0 } from '@auth0/auth0-react';
 import { useMutation } from '@apollo/client';
 import { User } from './graphql/model/User';
 import { CREATE_USER_ON_SIGN_IN } from './graphql/mutation/User';
-import TestPlaid from './components/TestPlaid';
-import Link from './components/Link';
 import plaidContext from './context/PlaidContext';
-import Onboard from './components/Onboard';
-import PlaidLink from './components/PlaidLink';
-import SideBar from './components/SideBar';
 import TopBar from './components/TopBar';
 import { AppPageName } from './enums/AppPageName';
 import Balance from './components/Balance';
 import Transactions from './components/Transactions';
 import Dashboard from './components/Dashboard';
 import Transfer from './components/Transfer';
+import SideBar from './components/SideBar';
 
 
 
 function App() {
 
   const { user, isAuthenticated } = useAuth0();
-  const [createUserOnSignIn, { loading, error, data }] = useMutation<{
+  const [createUserOnSignIn, ] = useMutation<{
     CreateUserOnSignIn: User
   }>(CREATE_USER_ON_SIGN_IN);
 
@@ -37,7 +31,7 @@ function App() {
   }, [currentPageName])
   
 
-  const { accessToken, dispatch } = useContext(plaidContext);
+  const { dispatch } = useContext(plaidContext);
 
   const showCurrentPage = (currentPageName: AppPageName) => {
     switch (currentPageName) {

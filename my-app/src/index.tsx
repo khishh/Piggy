@@ -7,6 +7,8 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import client from './graphql/Apollo';
 import { ApolloProvider } from '@apollo/client';
 import { PlaidProvider } from './context/PlaidContext';
+import { appTheme } from './themes/theme';
+import { ThemeProvider } from "@mui/material/styles";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -26,10 +28,12 @@ if (!process.env.REACT_APP_AUTH0_DOMAIN || !process.env.REACT_APP_AUTH0_CLIENT_I
           clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
           redirectUri={window.location.origin}
         >
-          <App />
+          <ThemeProvider theme={appTheme}>
+
+            <App />
+          </ThemeProvider>
         </Auth0Provider>
       </PlaidProvider>
-
     </ApolloProvider>
 
   );
