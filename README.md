@@ -10,7 +10,7 @@
 ...
 - More learnings as this project progresses
 
-# [WIP] System Design Overview
+# [WIP] System Design Plan
 
 ![diagram (1)](https://user-images.githubusercontent.com/60908906/210921954-5feb88c1-84e0-4ff8-8db1-c06ddff148eb.png)
 
