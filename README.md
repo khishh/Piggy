@@ -8,6 +8,7 @@
 - Learn and implement system design of the modern full-stack application
 - Get deeper exposures to DevOps tools such as Docker, nginx, Kubernetes, Workflow, and more.
 ...
+- More learnings as this project progresses
 
 # 1. Clone the repository
 
