@@ -22,7 +22,6 @@ type User {
   first_name: String!
   picture: String
   sub: String!
-  access_token: String
 }
 
 input UserInput {
@@ -31,7 +30,78 @@ input UserInput {
   first_name: String!
   picture: String
   sub: String!
-  access_token: String
+}
+
+type Item {
+  id: String!
+  user_sub: String!
+  access_token: String!
+  request_id: String!
+  last_cursor: String
+}
+
+type ItemInput {
+  id: String!
+  user_sub: String!
+  access_token: String!
+  request_id: String!
+  last_cursor: String
+}
+
+type Account {
+  id: String!
+  item_id: String!
+  name: String
+  official_name: String
+  sub_type: String!
+  type: String!
+}
+
+type AccountInput {
+  id: String!
+  item_id: String!
+  name: String
+  official_name: String
+  sub_type: String!
+  type: String!
+}
+
+type Transaction {
+  id: String!
+  account_id: String!
+  amount: Float!
+  authorized_date: String
+  category: [String]!
+  date: String!
+  iso_currency_code: String!
+  location: Location
+}
+
+type TransactionInput {
+  id: String!
+  account_id: String!
+  amount: Float!
+  authorized_date: String
+  category: [String]!
+  date: String!
+  iso_currency_code: String!
+  location: LocationInput
+}
+
+type Location {
+  address: String
+  city: String
+  country: String
+  postal_code: String
+  region: String
+}
+
+type LocationInput {
+  address: String
+  city: String
+  country: String
+  postal_code: String
+  region: String
 }
 
 type Mutation{

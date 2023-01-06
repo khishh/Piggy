@@ -135,6 +135,7 @@ func main() {
 	router.POST("/api", graphqlHandler(db))
 	router.POST("/api/create_link_token", plaidBaseHandler(client, plaidimpl.CreateLinkToken))
 	router.POST("/api/create_access_token", plaidBaseHandler(client, plaidimpl.CreateAccessToken))
+	router.POST("/api/transactions/sync", plaidBaseHandler(client, plaidimpl.GetTransactionsSync))
 	router.Run(fmt.Sprintf(":%s", defaultPort))
 }
 

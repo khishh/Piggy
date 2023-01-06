@@ -2,6 +2,24 @@
 
 package model
 
+type Account struct {
+	ID           string  `json:"id"`
+	ItemID       string  `json:"item_id"`
+	Name         *string `json:"name"`
+	OfficialName *string `json:"official_name"`
+	SubType      string  `json:"sub_type"`
+	Type         string  `json:"type"`
+}
+
+type AccountInput struct {
+	ID           string  `json:"id"`
+	ItemID       string  `json:"item_id"`
+	Name         *string `json:"name"`
+	OfficialName *string `json:"official_name"`
+	SubType      string  `json:"sub_type"`
+	Type         string  `json:"type"`
+}
+
 type Book struct {
 	ID        int    `json:"id"`
 	Title     string `json:"title"`
@@ -15,21 +33,73 @@ type BookInput struct {
 	Publisher string `json:"publisher"`
 }
 
+type Item struct {
+	ID          string  `json:"id"`
+	UserSub     string  `json:"user_sub"`
+	AccessToken string  `json:"access_token"`
+	RequestID   string  `json:"request_id"`
+	LastCursor  *string `json:"last_cursor"`
+}
+
+type ItemInput struct {
+	ID          string  `json:"id"`
+	UserSub     string  `json:"user_sub"`
+	AccessToken string  `json:"access_token"`
+	RequestID   string  `json:"request_id"`
+	LastCursor  *string `json:"last_cursor"`
+}
+
+type Location struct {
+	Address    *string `json:"address"`
+	City       *string `json:"city"`
+	Country    *string `json:"country"`
+	PostalCode *string `json:"postal_code"`
+	Region     *string `json:"region"`
+}
+
+type LocationInput struct {
+	Address    *string `json:"address"`
+	City       *string `json:"city"`
+	Country    *string `json:"country"`
+	PostalCode *string `json:"postal_code"`
+	Region     *string `json:"region"`
+}
+
+type Transaction struct {
+	ID              string    `json:"id"`
+	AccountID       string    `json:"account_id"`
+	Amount          float64   `json:"amount"`
+	AuthorizedDate  *string   `json:"authorized_date"`
+	Category        []*string `json:"category"`
+	Date            string    `json:"date"`
+	IsoCurrencyCode string    `json:"iso_currency_code"`
+	Location        *Location `json:"location"`
+}
+
+type TransactionInput struct {
+	ID              string         `json:"id"`
+	AccountID       string         `json:"account_id"`
+	Amount          float64        `json:"amount"`
+	AuthorizedDate  *string        `json:"authorized_date"`
+	Category        []*string      `json:"category"`
+	Date            string         `json:"date"`
+	IsoCurrencyCode string         `json:"iso_currency_code"`
+	Location        *LocationInput `json:"location"`
+}
+
 type User struct {
-	ID          int     `json:"id"`
-	Email       string  `json:"email"`
-	LastName    string  `json:"last_name"`
-	FirstName   string  `json:"first_name"`
-	Picture     *string `json:"picture"`
-	Sub         string  `json:"sub"`
-	AccessToken *string `json:"access_token"`
+	ID        int     `json:"id"`
+	Email     string  `json:"email"`
+	LastName  string  `json:"last_name"`
+	FirstName string  `json:"first_name"`
+	Picture   *string `json:"picture"`
+	Sub       string  `json:"sub"`
 }
 
 type UserInput struct {
-	Email       string  `json:"email"`
-	LastName    string  `json:"last_name"`
-	FirstName   string  `json:"first_name"`
-	Picture     *string `json:"picture"`
-	Sub         string  `json:"sub"`
-	AccessToken *string `json:"access_token"`
+	Email     string  `json:"email"`
+	LastName  string  `json:"last_name"`
+	FirstName string  `json:"first_name"`
+	Picture   *string `json:"picture"`
+	Sub       string  `json:"sub"`
 }

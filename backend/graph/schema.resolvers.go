@@ -54,13 +54,13 @@ func (r *mutationResolver) CreateUserOnSignIn(ctx context.Context, input model.U
 	}
 
 	selectedUser := &model.User{
-		ID:          user.ID,
-		FirstName:   user.FirstName,
-		LastName:    user.LastName,
-		Picture:     &user.Picture,
-		Email:       user.Email,
-		Sub:         user.Sub,
-		AccessToken: &user.AccessToken,
+		ID:        user.ID,
+		FirstName: user.FirstName,
+		LastName:  user.LastName,
+		Picture:   &user.Picture,
+		Email:     user.Email,
+		Sub:       user.Sub,
+		// AccessToken: &user.AccessToken,
 	}
 	return selectedUser, nil
 }
@@ -73,13 +73,13 @@ func (r *mutationResolver) UpdateUserWithAccessToken(ctx context.Context, id str
 	}
 
 	updatedUser := &model.User{
-		ID:          user.ID,
-		FirstName:   user.FirstName,
-		LastName:    user.LastName,
-		Picture:     &user.Picture,
-		Email:       user.Email,
-		Sub:         user.Sub,
-		AccessToken: &user.AccessToken,
+		ID:        user.ID,
+		FirstName: user.FirstName,
+		LastName:  user.LastName,
+		Picture:   &user.Picture,
+		Email:     user.Email,
+		Sub:       user.Sub,
+		// AccessToken: &user.AccessToken,
 	}
 	return updatedUser, nil
 }
@@ -121,13 +121,13 @@ func (r *queryResolver) GetOneUser(ctx context.Context, id string) (*model.User,
 	}
 
 	selectedUser := &model.User{
-		ID:          user.ID,
-		FirstName:   user.FirstName,
-		LastName:    user.LastName,
-		Picture:     &user.Picture,
-		Email:       user.Email,
-		Sub:         user.Sub,
-		AccessToken: &user.AccessToken,
+		ID:        user.ID,
+		FirstName: user.FirstName,
+		LastName:  user.LastName,
+		Picture:   &user.Picture,
+		Email:     user.Email,
+		Sub:       user.Sub,
+		// AccessToken: &user.AccessToken,
 	}
 
 	return selectedUser, nil
