@@ -7,6 +7,7 @@ This project is currently work in progress.
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/60908906/210943718-8909491d-dcaa-4269-a06e-941855604477.png" width="250" height="250" ></img>
+<p>Reference of this cute piggy: https://uxwing.com/piggy-bank-icon/
 </div>
 
 # Learning goals in this project
