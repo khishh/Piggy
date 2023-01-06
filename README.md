@@ -54,5 +54,10 @@ cp .env.example .env
 docker compose up --build --detach
 ```
 
+Once all containers spin ups, you can do
+- open the web application at `localhost:3000`
+- open the graphql playground at `localhost:8080`
+
+
 ## Links
 ER diagram I created for this project: https://dbdiagram.io/d/63a78b3a7d39e42284e7630f
