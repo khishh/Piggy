@@ -160,6 +160,7 @@ func graphqlHandler(db *gorm.DB) gin.HandlerFunc {
 	handler := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
 		BookRepository: repository.NewBookService(db),
 		UserRepository: repository.NewUserService(db),
+		ItemRepository: repository.NewItemService(db),
 	}}))
 
 	return func(c *gin.Context) {

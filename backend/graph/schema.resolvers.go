@@ -84,6 +84,24 @@ func (r *mutationResolver) UpdateUserWithAccessToken(ctx context.Context, id str
 	return updatedUser, nil
 }
 
+// CreateItem is the resolver for the CreateItem field.
+func (r *mutationResolver) CreateItem(ctx context.Context, input model.ItemInput) (*model.Item, error) {
+	item, err := r.ItemRepository.CreateItem(&input)
+
+	if err != nil {
+		return nil, err
+	}
+
+	createdItem := &model.Item{
+		ID:          item.ID,
+		UserSub:     item.UserSub,
+		AccessToken: item.AccessToken,
+		RequestID:   item.RequestId,
+		LastCursor:  item.LastCursor,
+	}
+	return createdItem, nil
+}
+
 // GetAllBooks is the resolver for the GetAllBooks field.
 func (r *queryResolver) GetAllBooks(ctx context.Context) ([]*model.Book, error) {
 	books, err := r.BookRepository.GetAllBooks()
@@ -131,6 +149,49 @@ func (r *queryResolver) GetOneUser(ctx context.Context, id string) (*model.User,
 	}
 
 	return selectedUser, nil
+}
+
+// GetOneItem is the resolver for the GetOneItem field.
+func (r *queryResolver) GetOneItem(ctx context.Context, id string) (*model.Item, error) {
+	item, err := r.ItemRepository.GetOneItem(id)
+
+	if err != nil {
+		return nil, err
+	}
+
+	foundItem := &model.Item{
+		ID:          item.ID,
+		UserSub:     item.UserSub,
+		AccessToken: item.AccessToken,
+		RequestID:   item.RequestId,
+		LastCursor:  item.LastCursor,
+	}
+
+	return foundItem, nil
+}
+
+// GetAllItemOfOneUser is the resolver for the GetAllItemOfOneUser field.
+func (r *queryResolver) GetAllItemOfOneUser(ctx context.Context, subid string) ([]*model.Item, error) {
+	items, err := r.ItemRepository.GetAllItemOfOneUser(subid)
+
+	if err != nil {
+		return nil, err
+	}
+
+	foundItems := make([]*model.Item, 0)
+
+	for _, item := range *items {
+		_item := &model.Item{
+			ID:          item.ID,
+			UserSub:     item.UserSub,
+			AccessToken: item.AccessToken,
+			RequestID:   item.RequestId,
+			LastCursor:  item.LastCursor,
+		}
+		foundItems = append(foundItems, _item)
+	}
+
+	return foundItems, nil
 }
 
 // Mutation returns MutationResolver implementation.

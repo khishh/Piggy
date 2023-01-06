@@ -42,11 +42,10 @@ type Item struct {
 }
 
 type ItemInput struct {
-	ID          string  `json:"id"`
-	UserSub     string  `json:"user_sub"`
-	AccessToken string  `json:"access_token"`
-	RequestID   string  `json:"request_id"`
-	LastCursor  *string `json:"last_cursor"`
+	ID          string `json:"id"`
+	UserSub     string `json:"user_sub"`
+	AccessToken string `json:"access_token"`
+	RequestID   string `json:"request_id"`
 }
 
 type Location struct {
