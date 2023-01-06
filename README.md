@@ -39,7 +39,7 @@ cp .env.example .env
 
 - Obtain `PLAID_CLIENT_ID` and `PLAID_SECRET` from https://dashboard.plaid.com/account/keys and place them within your `.env` file after you create your own Plaid account.
 
-# 3. Run this application
+# 3. Run this application locally
 
 ## Run with Docker
 
