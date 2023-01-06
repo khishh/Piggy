@@ -1,5 +1,8 @@
 [WIP]Personal finance app using Plaid Api
 
+ER Diagram for Data Models
+https://dbdiagram.io/d/63a78b3a7d39e42284e7630f
+
 # Learning goals in this project
 
 - Get familiar with GoLang through building REST APIs
