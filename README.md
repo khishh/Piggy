@@ -10,6 +10,11 @@
 ...
 - More learnings as this project progresses
 
+# [WIP] System Design Overview
+
+![diagram](https://user-images.githubusercontent.com/60908906/210921641-d90f98d3-71f7-4c35-9e0c-528f692bafff.png)
+
+
 # 1. Clone the repository
 
 Using https:
