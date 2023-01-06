@@ -1,5 +1,13 @@
-[WIP]Personal finance app using Plaid Api
+# Piggy
 
+Piggy is a Fin-Tech application aiming to empower users monitor their spending habits and optimize their daily financial decisions. 
+
+This project is currently work in progress. 
+
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/60908906/210943718-8909491d-dcaa-4269-a06e-941855604477.png" width="250" height="250" ></img>
+</div>
 
 # Learning goals in this project
 
