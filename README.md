@@ -12,7 +12,7 @@
 
 # [WIP] System Design Overview
 
-![diagram](https://user-images.githubusercontent.com/60908906/210921641-d90f98d3-71f7-4c35-9e0c-528f692bafff.png)
+![diagram (1)](https://user-images.githubusercontent.com/60908906/210921954-5feb88c1-84e0-4ff8-8db1-c06ddff148eb.png)
 
 
 # 1. Clone the repository
